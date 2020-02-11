@@ -34,21 +34,13 @@ func (c Config) Init() Config {
 
 // Save writes a config file at the specified path
 func (c Config) Save(path string) {
-	file, err := os.OpenFile(path, os.O_CREATE, 600)
-	if err != nil {
-		var errMsg = fmt.Sprintf("Error while opening config: %s\n", err)
-		panic(errMsg)
-	}
-	defer file.Close()
-
 	jsonString, err := json.MarshalIndent(c, "", "	")
 	if err != nil {
 		var errMsg = fmt.Sprintf("Error while serializing config: %s\n", err)
 		panic(errMsg)
 	}
-	fmt.Println(string(jsonString));
-	file.Write(jsonString);
-	file.Sync();
+	//fmt.Println(string(jsonString));
+	ioutil.WriteFile(path, jsonString, 0644);
 }
 
 //Load loads a config file from the specified path

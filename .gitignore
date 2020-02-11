@@ -30,3 +30,5 @@ config.json
 
 go_path/src/github.com/**
 go_path/src/golang.org/**
+
+PRMirror
