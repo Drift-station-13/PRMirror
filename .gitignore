@@ -26,9 +26,13 @@ debug
 mirror.db
 mirror.db.lock
 .vs/
-config.json
+go_path/bin/config.json
 
 go_path/src/github.com/**
 go_path/src/golang.org/**
 
 PRMirror
+go_path/src/PRMirror
+go_path/bin/PRMirror
+
+config_og.json

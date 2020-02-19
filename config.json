@@ -1,0 +1,12 @@
+{
+	"GitHubToken": "thegittoken",
+	"UpstreamOwner": "BeeStation", 
+	"UpstreamRepo": "BeeStation-Hornet",
+	"DownstreamOwner": "Drift-station-13",
+	"DownstreamRepo": "Drift_station_13",
+	"RepoPath": "theprpath/Drift_station_13/",
+	"ToolPath": "tools/merge-upstream-pull-request.sh",
+	"UseWebhook": false,
+	"WebhookPort": 0,
+	"WebhookSecret": ""
+}
