@@ -5,8 +5,9 @@ pr_path=$PWD
 echo GitHubToken?
 read git_hub_token
 
-sed "s/thegittoken/${git_hub_token}/g" config.json > config_0.json
-sed "s/theprpath/${pr_path}/g" config_0.json > configed.json
+sed "s@thegittoken@$git_hub_token@" config.json > config_0.json
+sed "s@theprpath@$pr_path@" config_0.json > configed.json
+rm config_0.json
 
 # build
 export GOPATH="$PWD/go_path"
