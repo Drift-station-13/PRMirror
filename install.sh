@@ -23,4 +23,4 @@ cd Drift_station_13
 git config credential.helper store
 git push
 
-chmod +x $pr_path/Drift_station_13/tools/merge-upstream-pull-request.sh $GOPATH/bin/PRMirror $pr_path/start.sh
+chmod u+x $pr_path/Drift_station_13/merge-upstream-pull-request.sh $GOPATH/bin/PRMirror $pr_path/start.sh
