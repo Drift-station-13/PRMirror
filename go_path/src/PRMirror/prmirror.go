@@ -190,7 +190,13 @@ func (p PRMirror) MirrorPR(pr *github.PullRequest) (int, error) {
 	log.Infof("Mirroring PR [%d]: %s from %s\n", pr.GetNumber(), pr.GetTitle(), pr.User.GetLogin())
 	
 	// YORI CHANGE
-	exec.Command(fmt.Sprintf("chmod +x %s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
+	precommandcmd := exec.Command("chmod", "+x", fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
+	precommandcmdOut, precommandcmdErr := cmd.CombinedOutput();
+	if precommandcmdErr != nil {
+		log.Criticalf("Could not get perm to tool.");
+		return 0, precommandcmdErr
+	}
+	
 	
 	cmd := exec.Command(fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath), strconv.Itoa(pr.GetNumber()), pr.GetTitle())
 	cmd.Dir = p.Configuration.RepoPath
@@ -243,7 +249,12 @@ func (p PRMirror) RemirrorPR(pr *github.PullRequest) (int, error) {
 	log.Infof("Remirroring PR [%d]: %s from %s\n", pr.GetNumber(), pr.GetTitle(), pr.User.GetLogin())
 	
 	// YORI CHANGE
-	exec.Command(fmt.Sprintf("chmod +x %s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
+	precommandcmd := exec.Command("chmod", "+x", fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
+	precommandcmdOut, precommandcmdErr := cmd.CombinedOutput();
+	if precommandcmdErr != nil {
+		log.Criticalf("Could not get perm to tool.");
+		return 0, precommandcmdErr
+	}
 
 	cmd := exec.Command(fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath), strconv.Itoa(pr.GetNumber()), pr.GetTitle())
 	cmd.Dir = p.Configuration.RepoPath
