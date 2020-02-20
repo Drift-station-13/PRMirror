@@ -191,7 +191,7 @@ func (p PRMirror) MirrorPR(pr *github.PullRequest) (int, error) {
 	
 	// YORI CHANGE
 	precommandcmd := exec.Command("chmod", "+x", fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
-	precommandcmdOut, precommandcmdErr := cmd.CombinedOutput();
+	precommandcmdOut, precommandcmdErr := precommandcmd.CombinedOutput();
 	if precommandcmdErr != nil {
 		log.Criticalf("Could not get perm to tool.");
 		return 0, precommandcmdErr
@@ -250,7 +250,7 @@ func (p PRMirror) RemirrorPR(pr *github.PullRequest) (int, error) {
 	
 	// YORI CHANGE
 	precommandcmd := exec.Command("chmod", "+x", fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
-	precommandcmdOut, precommandcmdErr := cmd.CombinedOutput();
+	precommandcmdOut, precommandcmdErr := precommandcmd.CombinedOutput();
 	if precommandcmdErr != nil {
 		log.Criticalf("Could not get perm to tool.");
 		return 0, precommandcmdErr
