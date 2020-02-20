@@ -188,7 +188,10 @@ func (p PRMirror) MirrorPR(pr *github.PullRequest) (int, error) {
 	}
 
 	log.Infof("Mirroring PR [%d]: %s from %s\n", pr.GetNumber(), pr.GetTitle(), pr.User.GetLogin())
-
+	
+	// YORI CHANGE
+	exec.Command(fmt.Sprintf("chmod +x %s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
+	
 	cmd := exec.Command(fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath), strconv.Itoa(pr.GetNumber()), pr.GetTitle())
 	cmd.Dir = p.Configuration.RepoPath
 	cmdoutput, err := cmd.CombinedOutput()
@@ -238,6 +241,9 @@ func (p PRMirror) RemirrorPR(pr *github.PullRequest) (int, error) {
 	}*/
 
 	log.Infof("Remirroring PR [%d]: %s from %s\n", pr.GetNumber(), pr.GetTitle(), pr.User.GetLogin())
+	
+	// YORI CHANGE
+	exec.Command(fmt.Sprintf("chmod +x %s%s", p.Configuration.RepoPath, p.Configuration.ToolPath));
 
 	cmd := exec.Command(fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath), strconv.Itoa(pr.GetNumber()), pr.GetTitle())
 	cmd.Dir = p.Configuration.RepoPath
